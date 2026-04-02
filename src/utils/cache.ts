@@ -1,6 +1,7 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const NodeCache = require('node-cache');
+import type NodeCacheType from 'node-cache';
+const NodeCache = require('node-cache') as typeof NodeCacheType;
 import { logger } from '../middleware.js';
 
 interface CacheOptions {
@@ -59,7 +60,7 @@ export function setCacheItem(key: string, value: any, size: number): boolean {
     if (keys.length > 0) {
       // Sort keys by TTL - remove items closest to expiration
       const keysToRemove = keys.slice(0, Math.ceil(keys.length * 0.2)); // Remove 20% of items
-      keysToRemove.forEach(k => {
+      keysToRemove.forEach((k: string) => {
         const item = cache.get<{data: Buffer, size: number}>(k);
         if (item) {
           currentCacheSize -= item.size;
