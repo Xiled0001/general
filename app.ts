@@ -1,5 +1,5 @@
 import express, { Express } from 'express';
-import compression from 'compression';
+import { default as compression } from 'compression';
 import { default as helmet } from 'helmet';
 import { SERVER, ROUTES } from './config/constants.js';
 import { corsMiddleware, errorHandler, requestLogger,  } from './middleware.js';
