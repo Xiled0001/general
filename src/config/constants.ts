@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
+import dotenv = require('dotenv');
 
 // Get directory path
 const __filename = fileURLToPath(import.meta.url);

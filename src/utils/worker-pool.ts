@@ -1,5 +1,5 @@
 import { cpus } from 'os';
-import Piscina from 'piscina';
+import Piscina = require('piscina');
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { logger } from '../middleware.js';
@@ -14,7 +14,7 @@ const USE_WORKERS = process.env.USE_WORKER_THREADS === 'true';
 let workerPool: any = null;
 
 if (USE_WORKERS) {
-  workerPool = new (Piscina as any)({
+  workerPool = new Piscina({
     filename: path.resolve(__dirname, './compression-worker.js'),
     minThreads: 1,
     maxThreads: WORKER_THREADS,

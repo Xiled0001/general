@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { cors as honoCors } from 'hono/cors';
-import pino from 'pino';
+import pino = require('pino');
 import { SERVER, PROXY, LOGGING } from './config/constants.js';
 
 // ==================== LOGGER MIDDLEWARE ====================
 
 // Create a pino logger instance
-export const logger = pino.default({
+export const logger = pino({
   level: LOGGING.LEVEL,
   transport: {
     target: 'pino-pretty',

@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction, Router } from 'express';
-import fetch from 'node-fetch';
+import fetch = require('node-fetch');
 import { URL } from 'url';
 import { PROXY, ROUTES, SERVER } from './config/constants.js';
 import { logger } from './middleware.js';
