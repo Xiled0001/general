@@ -1,5 +1,7 @@
 import { cpus } from 'os';
-import Piscina = require('piscina');
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const Piscina = require('piscina');
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { logger } from '../middleware.js';

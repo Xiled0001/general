@@ -1,6 +1,8 @@
 import express, { Express } from 'express';
-import compression = require('compression');
-import helmet = require('helmet');
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const compression = require('compression');
+const helmet = require('helmet');
 import { SERVER, ROUTES } from './config/constants.js';
 import { corsMiddleware, errorHandler, requestLogger,  } from './middleware.js';
 import proxyRoutes from './proxy-routes.js';

@@ -1,5 +1,7 @@
 import express, { Request, Response, NextFunction, Router } from 'express';
-import fetch = require('node-fetch');
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const fetch = require('node-fetch');
 import { URL } from 'url';
 import { PROXY, ROUTES, SERVER } from './config/constants.js';
 import { logger } from './middleware.js';
@@ -190,7 +192,7 @@ async function streamProxyRequest(req: Request, res: Response, url: string, head
     // Set response headers
     for (const [key, value] of Object.entries(response.headers.raw())) {
       if (!['connection', 'transfer-encoding'].includes(key.toLowerCase())) {
-        res.setHeader(key, value);
+        res.setHeader(key, value as string | number | readonly string[]);
       }
     }
     
@@ -331,7 +333,7 @@ async function streamProxyRequest(req: Request, res: Response, url: string, head
             }, 'Stream completed');
           });
           
-          response.body.on('error', (err) => {
+          response.body.on('error', (err: any) => {
             recordResponse(requestStartTime, false, 0, responseSize);
             logger.error({
               type: 'stream-proxy',
@@ -703,7 +705,7 @@ async function proxyRequest(req: Request, res: Response, next: NextFunction) {
           if (key.toLowerCase() === 'content-encoding' && !isAudioSegment) {
             continue;
           }
-          res.setHeader(key, value);
+          res.setHeader(key, value as string | number | readonly string[]);
         }
       }
       

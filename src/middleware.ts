@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { cors as honoCors } from 'hono/cors';
-import pino = require('pino');
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const pino = require('pino');
 import { SERVER, PROXY, LOGGING } from './config/constants.js';
 
 // ==================== LOGGER MIDDLEWARE ====================

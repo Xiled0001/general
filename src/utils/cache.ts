@@ -1,4 +1,6 @@
-import NodeCache = require('node-cache');
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const NodeCache = require('node-cache');
 import { logger } from '../middleware.js';
 
 interface CacheOptions {
