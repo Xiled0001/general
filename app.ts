@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
-import { default as compression } from 'compression';
-import { default as helmet } from 'helmet';
+import * as compression from 'compression';
+import * as helmet from 'helmet';
 import { SERVER, ROUTES } from './config/constants.js';
 import { corsMiddleware, errorHandler, requestLogger,  } from './middleware.js';
 import proxyRoutes from './proxy-routes.js';
@@ -11,8 +11,8 @@ import proxyRoutes from './proxy-routes.js';
 const app: Express = express();
 
 // Apply global middleware
-app.use(compression());
-app.use(helmet({
+app.use(compression.default());
+app.use(helmet.default({
   contentSecurityPolicy: false // Disable CSP for proxy functionality
 }));
 app.use(express.json({ limit: '10mb' }));
